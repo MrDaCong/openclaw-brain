@@ -1,0 +1,5 @@
+# snapshot safety
+snapshots/**/agent/auth-profiles.json
+snapshots/**/agent/models.json
+snapshots/**/sessions/
+snapshots/**/*.tmp
