@@ -1,13 +1,13 @@
 ---
 name: skill-security-review
-description: Review the security of an OpenClaw skill or agent before installation, import, activation, or trust. Use when the user asks whether a skill is safe, asks to review a .skill package, asks whether a GitHub/ClawHub/zip-based skill is safe, or expresses intent to install/import/enable a skill. Default behavior: if the user wants to install a skill, audit first, then present the verdict and ask for confirmation before installing. Focus on data exposure, local command execution, persistence, network access, privilege escalation, destructive behavior, and supply-chain risk.
+description: Review the security of an OpenClaw skill or agent before installation, import, activation, or trust. Use when the user asks whether a skill is safe, asks to review a .skill package, asks whether a GitHub/ClawHub/zip-based skill is safe, or expresses intent to install/import/enable a skill. Default behavior: if the user wants to install any skill, ALWAYS audit first, then present a verdict and request confirmation before installation. Prioritize ClawHub workflows (inspect/files/file) and focus on data exposure, local command execution, persistence, network access, privilege escalation, destructive behavior, and supply-chain risk.
 ---
 
 # Skill Security Review
 
 Review first. Install later.
 
-Treat every new skill, agent bundle, script, or packaged `.skill` file as untrusted until checked. The goal is to decide whether it is safe enough for 吴老板's machine and data, not to prove absolute safety.
+Treat every new skill, agent bundle, script, or packaged `.skill` file as untrusted until checked. The goal is to decide whether it is safe enough for the user's machine and data, not to prove absolute safety.
 
 ## Default policy
 
@@ -20,6 +20,17 @@ Default sequence:
 4. ask the user to confirm before performing the installation
 
 This applies even if the user did not explicitly ask for a security review. Installation intent itself is enough to trigger the review.
+
+## ClawHub-first operational flow
+
+When the target is on ClawHub, use this order:
+1. `npx clawhub inspect <slug>` to review summary/owner/version
+2. `npx clawhub inspect <slug> --files` to enumerate file surface
+3. `npx clawhub inspect <slug> --file SKILL.md` and inspect key scripts/config files
+4. if suspicious signals are present, expand file reads before deciding
+5. only after verdict + user confirmation, run `npx clawhub install <slug>`
+
+If ClawHub flags the skill as suspicious, do not install by default; require explicit user approval after presenting risks.
 
 ## Audit workflow
 

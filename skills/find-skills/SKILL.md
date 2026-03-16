@@ -93,15 +93,19 @@ npx skills add vercel-labs/agent-skills@react-best-practices
 Learn more: https://skills.sh/vercel-labs/agent-skills/react-best-practices
 ```
 
-### Step 6: Offer to Install
+### Step 6: Security Review Before Install (Mandatory)
 
-If the user wants to proceed, you can install the skill for them:
+Before any installation, run a security review workflow first (prefer the local `skill-security-review` process).
 
-```bash
-npx skills add <owner/repo@skill> -g -y
-```
+Minimum checks:
+1. Inspect skill metadata/source and files
+2. Check for suspicious patterns (remote code execution, hidden telemetry, persistence changes, broad file access)
+3. Produce a verdict: ALLOW / ALLOW WITH GUARDRAILS / REJECT
+4. Ask user confirmation before installation
 
-The `-g` flag installs globally (user-level) and `-y` skips confirmation prompts.
+### Step 7: Offer to Install
+
+If the user wants to proceed after review, install with the platform-appropriate package manager and confirm the target/location first.
 
 ## Common Skill Categories
 

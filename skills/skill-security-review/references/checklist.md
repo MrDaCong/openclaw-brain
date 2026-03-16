@@ -1,5 +1,11 @@
 # Security Review Checklist
 
+## 0. ClawHub preflight (when source is ClawHub)
+- `npx clawhub inspect <slug>`
+- `npx clawhub inspect <slug> --files`
+- `npx clawhub inspect <slug> --file SKILL.md`
+- If security warning/suspicious flag appears: inspect scripts/config before any install decision
+
 ## 1. Artifact identity
 - Name/source:
 - Claimed purpose:
