@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "skills": {
+    "calendar": {
+      "version": "1.0.0",
+      "installedAt": 1773669362721
+    },
+    "todo-tracker-safe": {
+      "version": "1.0.1",
+      "installedAt": 1773669422600
+    }
+  }
+}
