@@ -12,6 +12,10 @@
     "skill-security-review": {
       "version": "1.0.0",
       "installedAt": 1773670742568
+    },
+    "xiaohongshu-mcp": {
+      "version": "1.0.0",
+      "installedAt": 1773672272672
     }
   }
 }
