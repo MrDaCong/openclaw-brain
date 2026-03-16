@@ -46,7 +46,8 @@ def check_status():
             print(f"❌ Error: {data.get('error', 'Unknown error')}")
         return data
     except requests.exceptions.ConnectionError:
-        print("❌ Cannot connect to MCP server. Make sure xiaohongshu-mcp is running on localhost:18060")
+        print(f"❌ Cannot connect to MCP server at {BASE_URL}. Ensure xiaohongshu-mcp is running.")
+        print("   Tip: In WSL2, try setting XHS_MCP_BASE_URL to your Windows host gateway, e.g. http://172.20.48.1:18060")
         sys.exit(1)
 
 
@@ -88,7 +89,7 @@ def search_notes(keyword, sort_by="综合", note_type="不限", publish_time="�
         
         return data
     except requests.exceptions.ConnectionError:
-        print("❌ Cannot connect to MCP server.")
+        print(f"❌ Cannot connect to MCP server at {BASE_URL}.")
         sys.exit(1)
 
 
@@ -132,7 +133,7 @@ def get_note_detail(feed_id, xsec_token, load_comments=False):
         
         return data
     except requests.exceptions.ConnectionError:
-        print("❌ Cannot connect to MCP server.")
+        print(f"❌ Cannot connect to MCP server at {BASE_URL}.")
         sys.exit(1)
 
 
@@ -160,7 +161,7 @@ def get_feeds():
         
         return data
     except requests.exceptions.ConnectionError:
-        print("❌ Cannot connect to MCP server.")
+        print(f"❌ Cannot connect to MCP server at {BASE_URL}.")
         sys.exit(1)
 
 
@@ -190,7 +191,7 @@ def publish_note(title, content, images, tags=None):
         
         return data
     except requests.exceptions.ConnectionError:
-        print("❌ Cannot connect to MCP server.")
+        print(f"❌ Cannot connect to MCP server at {BASE_URL}.")
         sys.exit(1)
 
 
