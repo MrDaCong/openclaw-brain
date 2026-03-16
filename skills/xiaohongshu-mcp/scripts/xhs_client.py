@@ -21,10 +21,13 @@ Examples:
 
 import argparse
 import json
+import os
 import sys
 import requests
 
-BASE_URL = "http://localhost:18060"
+# Default to localhost, but allow override for WSL2/remote setups, e.g.:
+# XHS_MCP_BASE_URL=http://host.docker.internal:18060
+BASE_URL = os.environ.get("XHS_MCP_BASE_URL", "http://localhost:18060")
 TIMEOUT = 60
 
 
